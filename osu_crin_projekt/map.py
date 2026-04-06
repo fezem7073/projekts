@@ -18,7 +18,7 @@ GridSize: 32
 TimelineZoom: 1
 
 [Metadata]
-Title:Yoru ni Kakeru
+Title:Your ni Kakeru
 TitleUnicode:夜に駆ける
 Artist:YOASOBI
 ArtistUnicode:YOASOBI

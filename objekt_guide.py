@@ -22,7 +22,7 @@ print(p1.greet()) # Gibt "Hallo, mein Name ist Anna." aus
 print(p2.greet()) # Gibt "Hallo, mein Name ist Max." aus
 
 print(p1.name)
-p1.name = "jannis"
+p1.name = "Jannis"
 print(p2.age)
 print(p1.name)
  
