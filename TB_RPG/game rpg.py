@@ -1,20 +1,7 @@
 import random
 import time
-import os
 
-
-# Create and write to a text file
-with open('example.txt', 'w') as file:
-    file.write('.\n')
-    file.write('This file contains some text.\n')
-    file.write('lololol')
-
-# Read from the text file
-#with open('example.txt', 'r') as file:
-    #content = file.read()
-    #print("Content of the file:")
-    #print(content)
-    #print(f"connnnntent:\n" + content)
+from Class_Wepons import weapons
 
 #variablen
 current_world_level = 1
@@ -28,49 +15,25 @@ schleim_hp = 100
 schleim_mana = 100
 enemy_hp = 100
 enemy_mana = 100
+
 # waffen auswahl status
-Langschwert = False
-Schild = False
-Mage = False
-Dolch = False
-Kurtzschwert = False
-Bogen = False
-Hammer = False
-Hammer_eigeschaft = ("stumpf")
+
+sword = weapons("swort", random.randint(5, 15), 5)
+Langschwert = weapons("Langschwert", random.randint(10, 20), 10)
+#Schild = weapons("Schild", random.randint(5, 10), 15)
+Mage = weapons("Mage", random.randint(15, 25), 5)
+Dolch = weapons("Dolch", random.randint(5, 10), 3)
+Kurtzschwert = weapons("Kurtzschwert", random.randint(5, 10), 7)
+Bogen = weapons("Bogen", random.randint(5, 10), 8)
+Hammer = weapons("Hammer", random.randint(10, 20), 12)
+
+
 # fight status
 ran_away = False
 fighting = False
 
 print("HP:",hp,"mana:",mana,"level:",level)
-geg = 10
-def test(lol):
-  lol = lol + 1
-  print(lol)
-  
-test(geg)
 
-
-
-def wald():
-  global user_input
-  print("Du bist im Wald")
-  print("Du siehst: Einen Baum, Einen Teich und einen schleim")
-  user_input = input("Wohin möchtest du gehen?")
-  print("baum, teich, schleim(Kampf)")
-  if user_input == "baum":
-    print("Du gehst zum Baum")
-  if user_input == "teich":
-    print("Du bist am Teich")
-  if user_input == "schleim":
-    print("Du kämpfst gegen einen schleim")
-    fight()
-  
-def dorf():
-  print("Du bist im Dorf")
-def fluss():
-  print("Du bist am Fluss")
-def gebirge():
-  print("du bist im Gebirge")
 def enemy_hp_ramp_up():
   global enemy_hp
   enemy_hp = enemy_hp * 1.10
@@ -105,31 +68,12 @@ def fight():
         print("3. Run away")
         choice = input("Enter your choice: ")
         if choice == "1":
+          
           if Langschwert:
-            damage = random.randint(10, 20)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Langschwert and dealt", damage, "damage!")
-          elif Schild:
-            damage = random.randint(5, 10)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Schild and dealt", damage, "damage!")
-          elif Mage:
-            damage = random.randint(15, 25)
-            enemy_hp -= damage
-            mana -= 10
-            print("You attacked the enemy with your Mage and dealt", damage, "damage!")
-          elif Dolch:
-            damage = random.randint(5, 10)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Dolch and dealt", damage, "damage!")
-          elif Kurtzschwert:
-            damage = random.randint(5, 10)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Kurtzschwert and dealt", damage, "damage!")
-          elif Bogen:
-            damage = random.randint(5, 10)
-            enemy_hp -= damage
-            print("You attacked the enemy with your Bogen and dealt", damage, "damage!")
+            enemy_hp -= Langschwert.attack()
+            print("You attacked the enemy with your Langschwert and dealt", Langschwert.attack(), "damage!")
+
+            
           else:
             print("You don't have a weapon equipped.")
         elif choice == "2":
@@ -201,26 +145,7 @@ def main():
   else:
     print("ungültige eingabe")
     
-
-print("Du bist auf einer wiese.In einer anderen welt")
-print("Du siehst: Einen Wald, Ein Dorf, Ein Fluss und Ein Gebirge")
-user_input = input("Wohin möchtest du gehen?")
-print("wald, Dorf, Fluss, Gebirge")
-
-if user_input == "Wald" or "wald":
-  print("Du gehst in den Wald")
-  wald()
-elif user_input == "Dorf" or "dorf":
-  print("Du gehst in das Dorf")
-  dorf()
-elif user_input == "Fluss" or "fluss":
-  print("Du gehst zum Fluss")
-  fluss()
-elif user_input == "Gebirge" or "gebirge":
-  print("Du gehst in das Gebirge")
-  gebirge()
-else:
-  print("ungültige eingabe")
+user_input = input("Willst du kämpfen? (f)")
 if user_input == "f":
     fight()
     print("kampf zu ende")
